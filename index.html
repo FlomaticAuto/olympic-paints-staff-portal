@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#F5C400">
+<title>Staff Portal — Olympic Paints</title>
+<link rel="icon" href="assets/logo.jpg">
+<link rel="apple-touch-icon" href="assets/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script>var t=localStorage.getItem('oly-theme');if(t)document.documentElement.className=t;</script>
+<link rel="stylesheet" href="assets/oly-theme.css">
+<style>
+/* Staff-portal-specific overrides: bigger touch targets, mobile-first */
+.portal-hero{
+  text-align:center;padding:48px 24px 24px;max-width:760px;margin:0 auto;
+}
+.portal-hero .hero-logo{width:88px;height:88px;margin:0 auto 18px}
+.portal-hero .eyebrow{font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:0.14em;font-size:12px;color:var(--color-brand-primary);margin-bottom:8px}
+.portal-hero h1{font-family:var(--font-display);font-weight:900;text-transform:uppercase;letter-spacing:0.01em;font-size:48px;line-height:1;margin:0 0 12px;color:var(--color-text-primary)}
+.portal-hero .welcome{font-size:17px;color:var(--color-text-secondary);margin:0;line-height:1.5}
+
+/* Tile grid — finger-friendly, mobile-first */
+.portal-tiles{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:20px;max-width:1100px;margin:32px auto;padding:0 20px;
+}
+.portal-tile{
+  display:flex;flex-direction:column;
+  padding:28px 28px 24px;
+  min-height:180px;
+  background:var(--color-surface-elevated);
+  border:1px solid var(--color-border-default);
+  border-radius:var(--r-xl);
+  box-shadow:var(--shadow-md);
+  text-decoration:none;
+  color:var(--color-text-primary);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--color-border-default);
+}
+.portal-tile:hover,.portal-tile:focus-visible{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-lg);
+  border-color:var(--color-brand-primary);
+  border-bottom-color:var(--color-brand-primary);
+}
+.portal-tile:focus-visible{outline:3px solid var(--color-brand-primary);outline-offset:2px}
+.portal-tile-icon{
+  width:56px;height:56px;border-radius:var(--r-md);
+  background:var(--color-brand-primary);color:var(--color-text-on-brand);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:700;
+  margin-bottom:16px;flex-shrink:0;
+}
+.portal-tile h2{font-family:var(--font-display);font-weight:800;text-transform:uppercase;letter-spacing:0.01em;font-size:26px;line-height:1.05;margin:0 0 8px;color:var(--color-text-primary)}
+.portal-tile p{margin:0 0 14px;font-size:15px;color:var(--color-text-secondary);line-height:1.5;flex:1}
+.portal-tile-cta{
+  font-family:var(--font-display);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;font-size:13px;
+  color:var(--color-brand-primary);display:inline-flex;align-items:center;gap:8px;
+}
+.portal-tile-cta::after{content:"→";font-size:18px;transition:transform .15s}
+.portal-tile:hover .portal-tile-cta::after{transform:translateX(4px)}
+
+/* Coming soon tile — dimmed */
+.portal-tile.coming-soon{
+  opacity:0.65;cursor:default;pointer-events:none;
+  border-style:dashed;
+}
+.portal-tile.coming-soon .portal-tile-icon{background:var(--color-neutral-bg);color:var(--color-neutral-fg)}
+.portal-tile.coming-soon .portal-tile-cta{color:var(--color-text-tertiary)}
+.portal-tile.coming-soon .portal-tile-cta::after{content:"·"}
+
+/* Help section */
+.portal-help{
+  max-width:760px;margin:48px auto 32px;padding:24px 28px;
+  background:var(--color-surface-sunken);
+  border-radius:var(--r-lg);
+  border:1px solid var(--color-border-subtle);
+  text-align:center;
+}
+.portal-help h3{font-family:var(--font-display);font-weight:800;text-transform:uppercase;letter-spacing:0.02em;font-size:18px;margin:0 0 8px;color:var(--color-text-primary)}
+.portal-help p{margin:0;color:var(--color-text-secondary);font-size:14px;line-height:1.6}
+
+/* Mobile tweaks */
+@media (max-width:600px){
+  .portal-hero{padding:32px 16px 12px}
+  .portal-hero h1{font-size:36px}
+  .portal-hero .welcome{font-size:15px}
+  .portal-tiles{gap:14px;padding:0 14px}
+  .portal-tile{padding:22px 22px 20px;min-height:auto}
+  .portal-tile h2{font-size:22px}
+  .topbar{padding:8px 14px}
+  .topbar-brand span{display:none}
+  .topbar-nav{display:none}
+  .theme-bar button{padding:5px 10px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="topbar-logo"><img src="assets/logo.jpg" alt="Olympic Paints" width="32" height="32"></div>
+    <span>Staff Portal</span>
+  </div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="active">Home</a>
+  </nav>
+  <div class="theme-bar">
+    <button onclick="olyTheme('theme-light',this)" class="active">Light</button>
+    <button onclick="olyTheme('theme-dark',this)">Dark</button>
+    <button onclick="olyTheme('theme-brand',this)">Brand</button>
+    <button onclick="olyTheme('theme-navy',this)">Navy</button>
+  </div>
+</header>
+
+<section class="portal-hero">
+  <div class="hero-logo"><img src="assets/logo.jpg" alt="Olympic Paints" width="88" height="88"></div>
+  <div class="eyebrow">Olympic Paints</div>
+  <h1>Staff Portal</h1>
+  <p class="welcome">Welcome. Pick a tool below to get started — guides, dashboards and forms all live here.</p>
+</section>
+
+<main class="portal-tiles">
+
+  <a class="portal-tile" href="https://flomaticauto.github.io/olympic-paints-odoo-walkthroughs/" target="_blank" rel="noopener">
+    <div class="portal-tile-icon">📘</div>
+    <h2>Odoo Walkthroughs</h2>
+    <p>Step-by-step guides for sales orders, customer collections, and vehicle scheduling. Everything you need to process a transaction from start to finish.</p>
+    <span class="portal-tile-cta">Open Walkthroughs</span>
+  </a>
+
+  <div class="portal-tile coming-soon" aria-hidden="true">
+    <div class="portal-tile-icon">📋</div>
+    <h2>Forms &amp; Requests</h2>
+    <p>Leave requests, expense claims, time-off — all the forms in one place.</p>
+    <span class="portal-tile-cta">Coming Soon</span>
+  </div>
+
+  <div class="portal-tile coming-soon" aria-hidden="true">
+    <div class="portal-tile-icon">📞</div>
+    <h2>Contacts &amp; Help</h2>
+    <p>Who to ask for what. Internal phone list and quick answers to common questions.</p>
+    <span class="portal-tile-cta">Coming Soon</span>
+  </div>
+
+</main>
+
+<section class="portal-help">
+  <h3>Need something that isn't here?</h3>
+  <p>Speak to your supervisor or send a request to <a href="mailto:quintusl@olympicpaints.co.za">quintusl@olympicpaints.co.za</a>. New tools and guides are added to this portal regularly.</p>
+</section>
+
+<footer class="footer">
+  Olympic Paints — Staff Portal · Last updated automatically from the source repo · <a href="https://github.com/FlomaticAuto/olympic-paints-staff-portal" target="_blank" rel="noopener">View source</a>
+</footer>
+
+<script>
+const OLY_THEMES=['theme-light','theme-dark','theme-brand','theme-navy'];
+function olyTheme(t,btn){
+  document.documentElement.classList.remove(...OLY_THEMES);
+  document.documentElement.classList.add(t);
+  localStorage.setItem('oly-theme',t);
+  document.querySelectorAll('.theme-bar button').forEach(b=>b.classList.toggle('active',b===btn));
+}
+</script>
+</body>
+</html>
