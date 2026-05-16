@@ -2,7 +2,11 @@
 <html lang="en" class="theme-light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="OP Staff">
+<meta name="mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#F5C400">
 <title>Staff Portal — Olympic Paints</title>
 <link rel="icon" href="assets/logo.jpg">
@@ -14,6 +18,24 @@
 <link rel="stylesheet" href="assets/oly-theme.css">
 <style>
 /* Staff-portal-specific overrides: bigger touch targets, mobile-first */
+
+/* iOS / Android safe-area handling (notch + home indicator) */
+html{-webkit-text-size-adjust:100%}
+body{
+  padding-left:env(safe-area-inset-left);
+  padding-right:env(safe-area-inset-right);
+  min-height:100dvh;
+}
+/* Override the shared .topbar so the notch doesn't crash into it */
+.topbar{
+  padding-top:calc(10px + env(safe-area-inset-top));
+  -webkit-backdrop-filter:saturate(180%) blur(8px);
+  backdrop-filter:saturate(180%) blur(8px);
+}
+/* Add bottom safe-area padding to the page so the home indicator
+   never overlaps the footer */
+.footer{padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+
 .portal-hero{
   text-align:center;padding:48px 24px 24px;max-width:760px;margin:0 auto;
 }
